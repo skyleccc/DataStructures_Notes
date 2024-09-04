@@ -30,19 +30,23 @@ int main(){
     push(&S, 7);
     push(&S, 27);
     push(&S, 40);
-    push(&S, 12);
     display(S);
     topElem = top(S);
     printf("\nTop Element: %d\n", topElem);
     isFull = full(S);
     printf("Is stack full?: %s\n\n", (isFull == TRUE) ? "TRUE" : "FALSE");
 
-    pop(&S);
+    pop(&S); // delete 40
     display(S);
     topElem = top(S);
     printf("\nTop Element: %d\n", topElem);
     isFull = full(S);
     printf("Is stack full?: %s\n\n", (isFull == TRUE) ? "TRUE" : "FALSE");
+
+    pushBottom(&S, 75);
+    display(S);
+    isFull = full(S);
+    printf("\nIs stack full?: %s\n\n", (isFull == TRUE) ? "TRUE" : "FALSE");
 
     makeNull(&S);
     display(S);

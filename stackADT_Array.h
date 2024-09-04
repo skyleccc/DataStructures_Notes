@@ -22,13 +22,13 @@ boolean full(Stack L){
 
 void initialize(Stack* L){
     L->top = MAX;
-    printf("Initialize successful.");
+    // printf("Initialize successful.");
 }
 
 void push(Stack* L, int elem){
     if(full(*L) == FALSE){
         L->elem[--L->top] = elem;
-        printf("Push successful.\n");
+        // printf("Push successful.\n");
     }else{
         printf("Stack is full, cannot use push.\n");
     }
@@ -37,7 +37,7 @@ void push(Stack* L, int elem){
 void pop(Stack* L){
     if(empty(*L) == FALSE){
         L->top++;
-        printf("Pop successful.\n");
+        // printf("Pop successful.\n");
     }else{
         printf("Stack is empty, cannot use pop.\n");
     }
@@ -53,15 +53,40 @@ void makeNull(Stack* L){
 }
 
 void display(Stack L){
-    Stack temp = L;
     if(empty(L) == FALSE){
-        while(temp.top != MAX){
+        Stack temp;
+        initialize(&temp);
+        while(empty(L) == FALSE){
             printf("\n+-----+\n");
-            printf("%d -- Display ", temp.elem[temp.top]);
+            printf("%d \n", top(L));
+            push(&temp, top(L));
+            pop(&L);
+        }
+        while(empty(temp) == FALSE){
+            push(&L, top(temp));
             pop(&temp);
         }
     }else{
         printf("Stack is empty, nothing to display.");
+    }
+}
+
+void pushBottom(Stack* L, int elem){
+    if(full(*L) == FALSE){
+        Stack temp;
+        initialize(&temp);
+        while(empty(*L) == FALSE){
+            push(&temp, top(*L));
+            pop(L);
+        }
+        push(L, elem);
+        while(empty(temp) == FALSE){
+            push(L, top(temp));
+            pop(&temp);
+        }
+        printf("Push at the bottom successful.");
+    }else{
+        printf("Stack is full, cannot insert at bottom.");
     }
 }
 
